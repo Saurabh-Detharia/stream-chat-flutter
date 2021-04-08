@@ -8,17 +8,40 @@ part of 'moor_chat_database.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
 class ChannelEntity extends DataClass implements Insertable<ChannelEntity> {
+  /// The id of this channel
   final String id;
+
+  /// The type of this channel
   final String type;
+
+  /// The cid of this channel
   final String cid;
+
+  /// The channel configuration data
   final Map<String, Object> config;
+
+  /// True if this channel entity is frozen
   final bool frozen;
+
+  /// The date of the last message
   final DateTime lastMessageAt;
+
+  /// The date of channel creation
   final DateTime createdAt;
+
+  /// The date of the last channel update
   final DateTime updatedAt;
+
+  /// The date of channel deletion
   final DateTime deletedAt;
+
+  /// The count of this channel members
   final int memberCount;
+
+  /// The id of the user that created this channel
   final String createdById;
+
+  /// Map of custom channel extraData
   final Map<String, Object> extraData;
   ChannelEntity(
       {@required this.id,
@@ -282,7 +305,7 @@ class ChannelsCompanion extends UpdateCompanion<ChannelEntity> {
     Expression<String> id,
     Expression<String> type,
     Expression<String> cid,
-    Expression<String> config,
+    Expression<Map<String, Object>> config,
     Expression<bool> frozen,
     Expression<DateTime> lastMessageAt,
     Expression<DateTime> createdAt,
@@ -290,7 +313,7 @@ class ChannelsCompanion extends UpdateCompanion<ChannelEntity> {
     Expression<DateTime> deletedAt,
     Expression<int> memberCount,
     Expression<String> createdById,
-    Expression<String> extraData,
+    Expression<Map<String, Object>> extraData,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -460,7 +483,7 @@ class $ChannelsTable extends Channels
   GeneratedBoolColumn get frozen => _frozen ??= _constructFrozen();
   GeneratedBoolColumn _constructFrozen() {
     return GeneratedBoolColumn('frozen', $tableName, false,
-        defaultValue: Constant(false));
+        defaultValue: const Constant(false));
   }
 
   final VerificationMeta _lastMessageAtMeta =
@@ -655,29 +678,77 @@ class $ChannelsTable extends Channels
 }
 
 class MessageEntity extends DataClass implements Insertable<MessageEntity> {
+  /// The message id
   final String id;
+
+  /// The text of this message
   final String messageText;
+
+  /// The list of attachments, either provided by the user
+  /// or generated from a command or as a result of URL scraping.
   final List<String> attachments;
+
+  /// The status of a sending message
   final MessageSendingStatus status;
+
+  /// The message type
   final String type;
+
+  /// The list of user mentioned in the message
   final List<String> mentionedUsers;
+
+  /// A map describing the count of number of every reaction
   final Map<String, int> reactionCounts;
+
+  /// A map describing the count of score of every reaction
   final Map<String, int> reactionScores;
+
+  /// The ID of the parent message, if the message is a thread reply.
   final String parentId;
+
+  /// The ID of the quoted message, if the message is a quoted reply.
   final String quotedMessageId;
+
+  /// Number of replies for this message.
   final int replyCount;
+
+  /// Check if this message needs to show in the channel.
   final bool showInChannel;
+
+  /// If true the message is shadowed
   final bool shadowed;
+
+  /// A used command name.
   final String command;
+
+  /// The DateTime when the message was created.
   final DateTime createdAt;
+
+  /// The DateTime when the message was updated last time.
   final DateTime updatedAt;
+
+  /// The DateTime when the message was deleted.
   final DateTime deletedAt;
+
+  /// Id of the User who sent the message
   final String userId;
+
+  /// Whether the message is pinned or not
   final bool pinned;
+
+  /// The DateTime at which the message was pinned
   final DateTime pinnedAt;
+
+  /// The DateTime on which the message pin expires
   final DateTime pinExpires;
+
+  /// Id of the User who pinned the message
   final String pinnedByUserId;
+
+  /// The channel cid of which this message is part of
   final String channelCid;
+
+  /// Message custom extraData
   final Map<String, Object> extraData;
   MessageEntity(
       {@required this.id,
@@ -1155,12 +1226,12 @@ class MessagesCompanion extends UpdateCompanion<MessageEntity> {
   static Insertable<MessageEntity> custom({
     Expression<String> id,
     Expression<String> messageText,
-    Expression<String> attachments,
-    Expression<int> status,
+    Expression<List<String>> attachments,
+    Expression<MessageSendingStatus> status,
     Expression<String> type,
-    Expression<String> mentionedUsers,
-    Expression<String> reactionCounts,
-    Expression<String> reactionScores,
+    Expression<List<String>> mentionedUsers,
+    Expression<Map<String, int>> reactionCounts,
+    Expression<Map<String, int>> reactionScores,
     Expression<String> parentId,
     Expression<String> quotedMessageId,
     Expression<int> replyCount,
@@ -1176,7 +1247,7 @@ class MessagesCompanion extends UpdateCompanion<MessageEntity> {
     Expression<DateTime> pinExpires,
     Expression<String> pinnedByUserId,
     Expression<String> channelCid,
-    Expression<String> extraData,
+    Expression<Map<String, Object>> extraData,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1849,29 +1920,77 @@ class $MessagesTable extends Messages
 
 class PinnedMessageEntity extends DataClass
     implements Insertable<PinnedMessageEntity> {
+  /// The message id
   final String id;
+
+  /// The text of this message
   final String messageText;
+
+  /// The list of attachments, either provided by the user
+  /// or generated from a command or as a result of URL scraping.
   final List<String> attachments;
+
+  /// The status of a sending message
   final MessageSendingStatus status;
+
+  /// The message type
   final String type;
+
+  /// The list of user mentioned in the message
   final List<String> mentionedUsers;
+
+  /// A map describing the count of number of every reaction
   final Map<String, int> reactionCounts;
+
+  /// A map describing the count of score of every reaction
   final Map<String, int> reactionScores;
+
+  /// The ID of the parent message, if the message is a thread reply.
   final String parentId;
+
+  /// The ID of the quoted message, if the message is a quoted reply.
   final String quotedMessageId;
+
+  /// Number of replies for this message.
   final int replyCount;
+
+  /// Check if this message needs to show in the channel.
   final bool showInChannel;
+
+  /// If true the message is shadowed
   final bool shadowed;
+
+  /// A used command name.
   final String command;
+
+  /// The DateTime when the message was created.
   final DateTime createdAt;
+
+  /// The DateTime when the message was updated last time.
   final DateTime updatedAt;
+
+  /// The DateTime when the message was deleted.
   final DateTime deletedAt;
+
+  /// Id of the User who sent the message
   final String userId;
+
+  /// Whether the message is pinned or not
   final bool pinned;
+
+  /// The DateTime at which the message was pinned
   final DateTime pinnedAt;
+
+  /// The DateTime on which the message pin expires
   final DateTime pinExpires;
+
+  /// Id of the User who pinned the message
   final String pinnedByUserId;
+
+  /// The channel cid of which this message is part of
   final String channelCid;
+
+  /// Message custom extraData
   final Map<String, Object> extraData;
   PinnedMessageEntity(
       {@required this.id,
@@ -2349,12 +2468,12 @@ class PinnedMessagesCompanion extends UpdateCompanion<PinnedMessageEntity> {
   static Insertable<PinnedMessageEntity> custom({
     Expression<String> id,
     Expression<String> messageText,
-    Expression<String> attachments,
-    Expression<int> status,
+    Expression<List<String>> attachments,
+    Expression<MessageSendingStatus> status,
     Expression<String> type,
-    Expression<String> mentionedUsers,
-    Expression<String> reactionCounts,
-    Expression<String> reactionScores,
+    Expression<List<String>> mentionedUsers,
+    Expression<Map<String, int>> reactionCounts,
+    Expression<Map<String, int>> reactionScores,
     Expression<String> parentId,
     Expression<String> quotedMessageId,
     Expression<int> replyCount,
@@ -2370,7 +2489,7 @@ class PinnedMessagesCompanion extends UpdateCompanion<PinnedMessageEntity> {
     Expression<DateTime> pinExpires,
     Expression<String> pinnedByUserId,
     Expression<String> channelCid,
-    Expression<String> extraData,
+    Expression<Map<String, Object>> extraData,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3043,11 +3162,22 @@ class $PinnedMessagesTable extends PinnedMessages
 }
 
 class ReactionEntity extends DataClass implements Insertable<ReactionEntity> {
+  /// The id of the user that sent the reaction
   final String userId;
+
+  /// The messageId to which the reaction belongs
   final String messageId;
+
+  /// The type of the reaction
   final String type;
+
+  /// The DateTime on which the reaction is created
   final DateTime createdAt;
+
+  /// The score of the reaction (ie. number of reactions sent)
   final int score;
+
+  /// Reaction custom extraData
   final Map<String, Object> extraData;
   ReactionEntity(
       {@required this.userId,
@@ -3207,7 +3337,7 @@ class ReactionsCompanion extends UpdateCompanion<ReactionEntity> {
     Expression<String> type,
     Expression<DateTime> createdAt,
     Expression<int> score,
-    Expression<String> extraData,
+    Expression<Map<String, Object>> extraData,
   }) {
     return RawValuesInsertable({
       if (userId != null) 'user_id': userId,
@@ -3413,13 +3543,28 @@ class $ReactionsTable extends Reactions
 }
 
 class UserEntity extends DataClass implements Insertable<UserEntity> {
+  /// User id
   final String id;
+
+  /// User role
   final String role;
+
+  /// Date of user creation
   final DateTime createdAt;
+
+  /// Date of last user update
   final DateTime updatedAt;
+
+  /// Date of last user connection
   final DateTime lastActive;
+
+  /// True if user is online
   final bool online;
+
+  /// True if user is banned from the chat
   final bool banned;
+
+  /// Map of custom user extraData
   final Map<String, Object> extraData;
   UserEntity(
       {@required this.id,
@@ -3611,7 +3756,7 @@ class UsersCompanion extends UpdateCompanion<UserEntity> {
     Expression<DateTime> lastActive,
     Expression<bool> online,
     Expression<bool> banned,
-    Expression<String> extraData,
+    Expression<Map<String, Object>> extraData,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3861,16 +4006,37 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserEntity> {
 }
 
 class MemberEntity extends DataClass implements Insertable<MemberEntity> {
+  /// The interested user id
   final String userId;
+
+  /// The channel cid of which this user is part of
   final String channelCid;
+
+  /// The role of the user in the channel
   final String role;
+
+  /// The date on which the user accepted the invite to the channel
   final DateTime inviteAcceptedAt;
+
+  /// The date on which the user rejected the invite to the channel
   final DateTime inviteRejectedAt;
+
+  /// True if the user has been invited to the channel
   final bool invited;
+
+  /// True if the member is banned from the channel
   final bool banned;
+
+  /// True if the member is shadow banned from the channel
   final bool shadowBanned;
+
+  /// True if the user is a moderator of the channel
   final bool isModerator;
+
+  /// The date of creation
   final DateTime createdAt;
+
+  /// The last date of update
   final DateTime updatedAt;
   MemberEntity(
       {@required this.userId,
@@ -4472,9 +4638,16 @@ class $MembersTable extends Members
 }
 
 class ReadEntity extends DataClass implements Insertable<ReadEntity> {
+  /// Date of the read event
   final DateTime lastRead;
+
+  /// Id of the User who sent the event
   final String userId;
+
+  /// The channel cid of which this read belongs
   final String channelCid;
+
+  /// Number of unread messages
   final int unreadMessages;
   ReadEntity(
       {@required this.lastRead,
@@ -4761,7 +4934,10 @@ class $ReadsTable extends Reads with TableInfo<$ReadsTable, ReadEntity> {
 
 class ChannelQueryEntity extends DataClass
     implements Insertable<ChannelQueryEntity> {
+  /// The unique hash of this query
   final String queryHash;
+
+  /// The channel cid of this query
   final String channelCid;
   ChannelQueryEntity({@required this.queryHash, @required this.channelCid});
   factory ChannelQueryEntity.fromData(
@@ -4956,11 +5132,22 @@ class $ChannelQueriesTable extends ChannelQueries
 
 class ConnectionEventEntity extends DataClass
     implements Insertable<ConnectionEventEntity> {
+  /// event id
   final int id;
+
+  /// User object of the current user
   final Map<String, Object> ownUser;
+
+  /// The number of unread messages for current user
   final int totalUnreadCount;
+
+  /// User total unread channels for current user
   final int unreadChannels;
+
+  /// DateTime of the last event
   final DateTime lastEventAt;
+
+  /// DateTime of the last sync
   final DateTime lastSyncAt;
   ConnectionEventEntity(
       {@required this.id,
@@ -5117,7 +5304,7 @@ class ConnectionEventsCompanion extends UpdateCompanion<ConnectionEventEntity> {
   });
   static Insertable<ConnectionEventEntity> custom({
     Expression<int> id,
-    Expression<String> ownUser,
+    Expression<Map<String, Object>> ownUser,
     Expression<int> totalUnreadCount,
     Expression<int> unreadChannels,
     Expression<DateTime> lastEventAt,
