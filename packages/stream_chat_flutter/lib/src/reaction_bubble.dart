@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:stream_chat_flutter/src/reaction_icon.dart';
 import 'package:stream_chat_flutter/src/stream_svg_icon.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class ReactionBubble extends StatelessWidget {
   const ReactionBubble({

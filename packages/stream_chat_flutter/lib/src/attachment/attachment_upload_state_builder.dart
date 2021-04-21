@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/src/upload_progress_indicator.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 typedef InProgressBuilder = Widget Function(BuildContext, int, int);
 typedef FailedBuilder = Widget Function(BuildContext, String);

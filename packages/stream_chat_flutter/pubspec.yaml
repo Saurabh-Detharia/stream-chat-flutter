@@ -23,7 +23,7 @@ dependencies:
   jiffy: ^4.1.0
   flutter_svg: ^0.21.0
   flutter_portal: ^0.3.0
-  cached_network_image: ^2.5.1
+  cached_network_image: ^3.0.0
   shimmer: ^2.0.0
   flutter_markdown: ^0.6.1
   url_launcher: ^6.0.3
@@ -45,7 +45,7 @@ dependencies:
   ezanimation: ^0.5.0
   synchronized: ^3.0.0
   characters: ^1.1.0
-  dio: ^3.0.10
+  dio: ^4.0.0
   path_provider: ^2.0.1
   video_thumbnail: ^0.3.3
 

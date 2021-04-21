@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ezanimation/ezanimation.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/src/stream_svg_icon.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 import '../stream_chat_flutter.dart';
 import 'extension.dart';
