@@ -11,8 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  stream_chat: 
-    path: ../
+  stream_chat:
+    git:
+      url: https://github.com/Saurabh-Detharia/stream-chat-flutter.git
+      ref: fixes
+      path: packages/stream_chat
 
 dev_dependencies:
   flutter_test:
